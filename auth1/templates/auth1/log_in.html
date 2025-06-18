@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIn</title>
+</head>
+<body>
+<h1>LOG IN</h1>
+
+<form action="" method="post">
+{% for i in form %}
+ {% csrf_token %}
+  {{i.label_tag}} 
+    {{i}} <br> <br>
+    {{i.errors|striptags}}<br> <br>
+{% endfor %}
+
+<input type="submit" value="LOG IN">
+</form>
+{{ form.non_field_errors }}
+</body>
+</html>
