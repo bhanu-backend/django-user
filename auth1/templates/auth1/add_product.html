@@ -1,0 +1,33 @@
+{% extends 'auth1/add.html' %}
+
+{% block one %}
+  <div class="container">
+
+    <div class="row">
+ 
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img src="{{ data.image.url }}" class="card-img-top" alt="Product Image" 
+          
+          width="150px" height="500px">
+          <div class="card-body">
+            <h5 class="card-title">{{data.name}}</h5>
+            <p class="card-text">{{data.description}}.</p>
+            <p class="card-text"><b>{{data.price}}</b></p>
+             <p class="card-text"><b>{{data.rating}}</b></p>
+             <p class="card-text"><b>{{data.expected_delivery}}</b></p>
+             <form action="{% url 'addproduct' data.id data.category %}" method="post">
+              {% csrf_token %}
+             <input type="number" value="Quantity" name="quantity">
+
+            <input class="btn btn-primary"  type="submit" value="Add to Cart">
+            </form>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+
+  </div>
+
+{% endblock one %}

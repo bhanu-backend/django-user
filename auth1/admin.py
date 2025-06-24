@@ -3,8 +3,8 @@ from django.contrib.sessions.models import Session
 from django.utils.html import format_html
 import pprint
 
-
-
+from .models import Product
+admin.site.register(Product)
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
     list_display = ['session_key', 'decoded_data', 'expire_date']
