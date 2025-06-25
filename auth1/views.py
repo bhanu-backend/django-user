@@ -1,24 +1,38 @@
+from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .forms import UserCustomForm,UserLoginForm
 from django.contrib.auth import login,logout,authenticate
 from .models import Product
 
-
+# 'cart': {'ref1':22 }
 def add_to_cart(request):
-     if not any(request.session['cart']) :
-              request.session['cart'] = ""
+     if request.session.get('cart') == None :
+              request.session['cart'] = {}
      data = Product.objects.all() 
      return render(request,"auth1/add.html",{'data':data})
 
 def addproduct(request,id,category):
      if request.method == "POST":
-               quantity =  request.POST.get('quantity')
-               print(quantity)
-               d={category + str(id): [id,quantity]}
-               print(d)
-               print( request.session['cart'],"--6666-----")
+               quantity = int(request.POST.get('quantity'))
+               cart = request.session.get('cart')
+               if  cart.get(category+"_"+str(id)) :
+                     cart[category+"_"+str(id)] = int(cart[category+"_"+str(id)])+quantity
+               else:
+                     cart[category+"_"+str(id)] = quantity #updated value
+               request.session['cart']=cart # reassign in session
      data = Product.objects.get(pk=id) 
      return render(request,"auth1/add_product.html",{'data':data})
+
+def mycart(request):
+      cart = request.session.get('cart')
+      print(cart)
+      for i in cart:
+          if 'Refrigerator' in i:
+            print(i[i.index('_')+1:])
+          else:
+            pass
+      return HttpResponse(str(cart))
+
 
 
 

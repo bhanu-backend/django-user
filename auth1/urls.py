@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/',views.log_out,name='logout'),
     path('',views.add_to_cart,name='home'),
     path('addproduct/<int:id>/<str:category>/',views.addproduct,name='addproduct'),
+    path('mycart',views.mycart,name='mycart'),
 
 ]
 
