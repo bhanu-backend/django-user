@@ -8,10 +8,12 @@ urlpatterns = [
     path('login/',views.log_in,name='login'),
     path('profile/',views.profile,name='profile'),
     path('logout/',views.log_out,name='logout'),
-    path('',views.add_to_cart,name='home'),
+  #  path('home/',views.add_to_cart,name='home'),
+    path('chosen/<int:num>/',views.category_chosen,name='chosen'),
+     path('',views.select_category,name='category'),
     path('addproduct/<int:id>/<str:category>/',views.addproduct,name='addproduct'),
-    path('mycart',views.mycart,name='mycart'),
-
+    path('add2cart',views.mycart,name='add2cart'),
+  
 ]
 
 

@@ -1,0 +1,17 @@
+{% extends 'auth1/add.html' %}
+
+
+{% block one %}
+  <div class="container">
+
+    <div class="row">
+      
+        <a href="{% url 'chosen' 1  %}"> Refrigerator</a> 
+        <br><br>
+        <br><br>
+       
+    </div>
+ <a href="{% url 'chosen'  2 %}"> AC</a>
+  </div>
+
+{% endblock one %}
