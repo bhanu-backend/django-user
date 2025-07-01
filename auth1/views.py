@@ -29,6 +29,8 @@ def addproduct(request,id,category):
      if request.method == "POST":
                quantity = int(request.POST.get('quantity'))
                cart = request.session.get('cart')
+               print(cart,id,"---------",cart.get(id))
+               id = str(id)
                if  cart.get(id) :
                      cart[id] = cart[id] + quantity
                else:
@@ -41,9 +43,14 @@ def mycart(request):
       cart = request.session.get('cart')
       #{'cart': {'1': 5, '5': 4}
       lis= []
-      for i in cart :
-            lis.append(Product.objects.get(pk=int(i)))
-      return render(request,"auth1/add_to_cart.html",{'data':lis})
+      total=0
+      for i,j in cart.items():
+            obj = Product.objects.get(pk=int(i))
+            price = obj.price 
+            lis.append([obj,j,price*j])
+            total=total + price*j
+      print(lis)
+      return render(request,"auth1/add_to_cart.html",{'data':lis,'total':total})
 
 
 

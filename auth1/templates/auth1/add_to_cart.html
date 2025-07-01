@@ -4,7 +4,7 @@
   <div class="container">
 
     <div class="row">
-      {% for i in data %}
+      {% for i,j,k in data %}
       <div class="col-4">
         <div class="card" style="width: 18rem;">
           <img src="{{ i.image.url }}" class="card-img-top" alt="Product Image" 
@@ -14,7 +14,8 @@
             <h5 class="card-title">{{i.name}}</h5>
             <p class="card-text">{{i.description}}.</p>
             <p class="card-text"><b>{{i.price}}</b></p>
-           
+             <p class="card-text"><b>{{j}} Quantity</b></p>
+                 <p class="card-text"><b>{{k}} Total</b></p>
           </div>
         </div>
       </div>
@@ -22,5 +23,7 @@
     </div>
 
   </div>
+  <hr>
+  <h1> Grand Total : {{total}}</h1>
 
 {% endblock one %}
