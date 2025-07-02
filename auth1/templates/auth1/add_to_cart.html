@@ -14,7 +14,14 @@
             <h5 class="card-title">{{i.name}}</h5>
             <p class="card-text">{{i.description}}.</p>
             <p class="card-text"><b>{{i.price}}</b></p>
-             <p class="card-text"><b>{{j}} Quantity</b></p>
+            <form action="{% url 'addproduct' i.id  %}" method="post">
+                {%csrf_token%}
+                 <input type="hidden" name="hidden" value="hidden">
+         <p class="card-text"><b>  <input type="number" value="{{j}}" name ="quantity"></b></p>
+             <p class="card-text"><b>  <input type="submit" value="Update"></b></p>
+
+            </form>
+                  <p class="card-text"><b><a href="{% url 'deleteproduct' i.id  %}">Delete</a></b></p>
                  <p class="card-text"><b>{{k}} Total</b></p>
           </div>
         </div>

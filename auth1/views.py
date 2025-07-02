@@ -25,14 +25,17 @@ def category_chosen(request,num=None):
 #      data = Product.objects.all() 
 #      return render(request,"auth1/add.html",{'data':data})
 
-def addproduct(request,id,category):
+def addproduct(request,id):
      if request.method == "POST":
                quantity = int(request.POST.get('quantity'))
                cart = request.session.get('cart')
                print(cart,id,"---------",cart.get(id))
                id = str(id)
                if  cart.get(id) :
-                     cart[id] = cart[id] + quantity
+                     if request.POST.get('hidden') :
+                         cart[id] = quantity
+                     else: 
+                         cart[id] = cart[id] + quantity
                else:
                      cart[id] = quantity #updated value
                request.session['cart']=cart # reassign in session
@@ -51,6 +54,14 @@ def mycart(request):
             total=total + price*j
       print(lis)
       return render(request,"auth1/add_to_cart.html",{'data':lis,'total':total})
+
+
+def deleteproduct(request,id):
+     cart = request.session.get('cart')
+     print(cart,"------------------------------",id)
+     cart.pop(str(id))
+     request.session['cart']=cart
+     return redirect('add2cart')
 
 
 

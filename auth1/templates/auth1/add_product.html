@@ -16,10 +16,10 @@
             <p class="card-text"><b>{{data.price}}</b></p>
              <p class="card-text"><b>{{data.rating}}</b></p>
              <p class="card-text"><b>{{data.expected_delivery}}</b></p>
-             <form action="{% url 'addproduct' data.id data.category %}" method="post">
+             <form action="{% url 'addproduct' data.id %}" method="post">
               {% csrf_token %}
              <input type="number" value="Quantity" name="quantity">
-
+                
             <input class="btn btn-primary"  type="submit" value="Add to Cart">
             </form>
           </div>
